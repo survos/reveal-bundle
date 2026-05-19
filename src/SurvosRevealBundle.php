@@ -2,11 +2,11 @@
 
 namespace Survos\RevealBundle;
 
-use Survos\CoreBundle\Bundle\AssetMapperBundle;
+use Survos\Kit\AbstractUxBundle;
 use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-class SurvosRevealBundle extends AssetMapperBundle
+class SurvosRevealBundle extends AbstractUxBundle
 {
     public const ASSET_PACKAGE = 'reveal';
 
