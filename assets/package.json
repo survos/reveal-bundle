@@ -11,11 +11,11 @@
     "@hotwired/stimulus": "^3.2.2"
   },
   "dependencies": {
-    "reveal.js": "^6.0.0"
+    "reveal.js": "^6.0.1"
   },
   "symfony": {
     "importmap": {
-      "reveal.js": "^6.0.0"
+      "reveal.js": "^6.0.1"
     },
     "controllers": {
       "reveal": {
@@ -24,7 +24,6 @@
         "fetch": "lazy",
         "enabled": true,
         "autoimport": {
-          "reveal.js/dist/reveal.js": true,
           "reveal.js/dist/reveal.css": true,
           "reveal.js/dist/theme/black.css": true
         }

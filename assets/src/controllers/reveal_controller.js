@@ -4,8 +4,8 @@ import 'reveal.js/dist/reveal.css';
 // import 'reveal.js/dist/theme/black.css'; // or your preferred theme
 
 // For code highlighting
-// import 'reveal.js/plugin/highlight/monokai.css'; // or your preferred style
-import RevealHighlight from 'reveal.js/plugin/highlight/highlight.js';
+// import 'reveal.js/dist/plugin/highlight/monokai.css'; // or your preferred style
+import RevealHighlight from 'reveal.js/plugin/highlight';
 
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {
