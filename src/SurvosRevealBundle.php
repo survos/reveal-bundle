@@ -1,29 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Survos\RevealBundle;
 
 use Survos\Kit\AbstractUxBundle;
 use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
 // Symfony\Component\HttpKernel\Bundle\Bundle <-- Flex auto-registration marker (see Survos\Kit\AbstractSurvosBundle)
-class SurvosRevealBundle extends AbstractUxBundle
+final class SurvosRevealBundle extends AbstractUxBundle
 {
-    public const ASSET_PACKAGE = 'reveal';
-
-    /**
-     * @param array<mixed> $config
-     */
-    public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
-    {
-        // $builder->setParameter('survos_workflow.direction', $config['direction']);
-    }
-
     public function configure(DefinitionConfigurator $definition): void
     {
         $definition->rootNode()
             ->children()
-            ->booleanNode('enabled')->defaultTrue()->end()
+                ->booleanNode('enabled')->defaultTrue()->end()
             ->end();
     }
 }

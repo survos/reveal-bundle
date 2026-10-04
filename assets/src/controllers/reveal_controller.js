@@ -1,38 +1,39 @@
 import { Controller } from '@hotwired/stimulus';
 import Reveal from 'reveal.js';
 import 'reveal.js/dist/reveal.css';
-// import 'reveal.js/dist/theme/black.css'; // or your preferred theme
-
-// For code highlighting
-// import 'reveal.js/dist/plugin/highlight/monokai.css'; // or your preferred style
 import RevealHighlight from 'reveal.js/plugin/highlight';
 
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {
     static values = {
-        theme: String,
-    }
+        options: { type: Object, default: {} },
+    };
 
     deck = null;
 
-    connect() {
-        console.log("Initializing Reveal from " + this.identifier);
-
-        this.deck = new Reveal(this.element, {
+    async connect() {
+        const deck = new Reveal(this.element, {
             hash: true,
-            plugins: [ RevealHighlight ],
-            // Optional: customize behavior
+            plugins: [RevealHighlight],
             transition: 'slide',
             controls: true,
             progress: true,
+            ...this.optionsValue,
         });
-
-        this.deck.initialize();
+        this.deck = deck;
+        try {
+            await deck.initialize();
+            if (this.deck !== deck) return;
+            this.dispatch('ready', { detail: { deck } });
+        } catch (error) {
+            if (this.deck !== deck) return;
+            this.dispatch('error', { detail: { error } });
+            console.error('Unable to initialize Reveal', error);
+        }
     }
 
     disconnect() {
-        if (this.deck) {
-            this.deck.destroy();
-        }
+        this.deck?.destroy();
+        this.deck = null;
     }
 }
